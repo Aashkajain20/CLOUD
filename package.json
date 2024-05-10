@@ -1,0 +1,19 @@
+{
+  "name": "image-compressor",
+  "version": "1.0.0",
+  "description": "It is a project which uses AWS S3 and EC2 to upload and compress the image",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aashka Jain",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1594.0",
+    "body-parser": "^1.20.2",
+    "dot-env": "^0.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container mt-5">  
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Register Form</div>
+            <div class="card-body">
+              <form id="register-form" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+                <div class="form-group">
+                  <label for="photo">Photo</label>
+                  <input type="file" class="form-control-file" id="photo">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const fileInput = form.elements['photo'];
+            console.log('fileInput', fileInput);
+            const file = fileInput.files[0];
+          
+            if (file) {
+              formData.append('photo', file);
+            }
+
+            // Send file and form data to server
+            fetch('/register', {
+              method: 'POST',
+              body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('File uploaded successfully');
+              console.log(data);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        });
+    </script>
+  </body>
+</html>
